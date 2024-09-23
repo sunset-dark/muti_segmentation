@@ -1,0 +1,28 @@
+# UNET 多分割项目的使用方法
+# 具体使用参考本人博文：https://blog.csdn.net/qq_44886601/category_12102735.html?spm=1001.2014.3001.5482
+
+1. 根据requirements.txt 下载需要的库文件，命令如下
+# pip install -r requirements.txt
+
+2. 数据集的文件摆放
+--data--train---images   训练集的图像
+--data--train---masks    训练集的图像标签
+--data--test---images    测试集的图像
+--data--test---masks     测试集的图像标签
+需要根据图像后缀更改dataset.py 文件
+      '''
+        image 和 label 名字不是完全一样需要更换（例如图片后缀不同等等），用下列代码替换，示例
+        mask_path = image_path.replace('jpg','png')
+        '''
+
+
+3. 根据数据集的大小更改下面两个参数
+# parser.add_argument("--base-size",default=120,type=int)               # 根据图像大小更改
+# parser.add_argument("--crop-size",default=96,type=int)                # 中心裁剪的尺寸
+
+4. 运行train.py 文件即可
+# python train.py
+
+5. 预测的时候，只需要将图片(多个图片也行)拖进inference文件夹下即可
+# python predict.py
+
